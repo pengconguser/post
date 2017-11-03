@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//首页启动路由
+Route::get('/', 'PagesController@root')->name('root');
