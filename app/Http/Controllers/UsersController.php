@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\UserRequest;
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller {
@@ -13,6 +14,9 @@ class UsersController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
+	public function __construct() {
+		$this->middleware('auth', ['except' => ['show']]);
+	}
 	public function index() {
 		//
 	}
@@ -53,8 +57,8 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id) {
-		$user = User::findOrFail($id);
+	public function edit() {
+		$user = Auth::user();
 		return view('users.edit')->withUser($user);
 	}
 
