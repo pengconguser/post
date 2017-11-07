@@ -22,7 +22,7 @@
                                 </strong>
                             </h4>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                {{ $user->introduction }}
                             </p>
                             <hr>
                                 <h4>
@@ -31,7 +31,7 @@
                                     </strong>
                                 </h4>
                                 <p>
-                                    {{ $user->created_at }}
+                                    {{ $user->created_at->diffForHumans() }}
                                 </p>
                             </hr>
                         </hr>

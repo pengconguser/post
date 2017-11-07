@@ -11,6 +11,8 @@
             </h4>
         </div>
 
+        @include('common.error')
+
         <div class="panel-body">
 
             <form action="{{ route('users.update', $user->id) }}" method="POST" accept-charset="UTF-8">
