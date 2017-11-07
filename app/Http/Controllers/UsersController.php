@@ -66,6 +66,7 @@ class UsersController extends Controller {
 	 */
 	public function update(UserRequest $request, $id) {
 		$user = User::findOrFail($id);
+		dd($request->avatar);
 		$user->update($request->all());
 		session()->flash('success', '个人资料更新成功');
 		return redirect()->to(route('users.show', $user->id));
