@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
-use App\Models\Topic;
+use App\Topic;
 use Auth;
 
 class TopicsController extends Controller {
@@ -14,7 +14,7 @@ class TopicsController extends Controller {
 
 	public function index() {
 		$user = Auth::user();
-		$topics = Topic::paginate();
+		$topics = Topic::paginate(30);
 		return view('topics.index', compact('topics'))->withUser($user);
 	}
 
