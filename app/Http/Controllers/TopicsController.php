@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
 use App\Topic;
@@ -24,11 +25,18 @@ class TopicsController extends Controller {
 
 	public function create(Topic $topic) {
 		$user = Auth::user();
-		return view('topics.create_and_edit', compact('topic'))->withUser($user);
+		$categories = Category::all();
+		return view('topics.create_and_edit')
+			->withUser($user)
+			->withCategories($categories)
+			->withTopic($topic);
 	}
 
-	public function store(TopicRequest $request) {
-		$topic = Topic::create($request->all());
+	public function store(TopicRequest $request, Topic $topic) {
+		$topic->fill($request->all());
+		$topic->user_id = Auth::id();
+		$topic->excerpt = str_limit($topic->body, 200);
+		$topic->save();
 		return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
 	}
 
