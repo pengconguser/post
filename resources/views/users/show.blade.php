@@ -54,12 +54,16 @@
             </div>
         </div>
         <hr>
-            {{-- 用户发布的内容 --}}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    暂无数据 ~_~
-                </div>
+                  {{-- 用户发布的内容 --}}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#">Ta 的话题</a></li>
+                    <li><a href="#">Ta 的回复</a></li>
+                </ul>
+                @include('users._topics', ['topics' => $user->topics()->recent()->paginate(5)])
             </div>
+        </div>
         </hr>
     </div>
 </div>

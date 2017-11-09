@@ -35,18 +35,24 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="user-avatar pull-left" style="margin-right:8px; margin-top:-5px;">
-                                <img src="{{ $user->avatar }}" class="img-responsive img-circle" width="30px" height="30px">
+                                <img src="{{ Auth::user()->avatar }}" class="img-responsive img-circle" width="30px" height="30px">
                             </span>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="/users/{{ Auth::user()->id }}">个人面板</a></li>
-                            <li><a href="{{ route('users.edit',Auth::id()) }}">编辑资料</a></li>
+                            <li><a href="/users/{{ Auth::user()->id }}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>个人面板
+                             </a></li>
+                            <li><a href="{{ route('users.edit',Auth::id()) }}">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            编辑资料
+                            </a></li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
+                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                                     退出登录
                                 </a>
 
