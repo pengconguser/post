@@ -11,6 +11,7 @@ use Auth;
 
 class TopicsController extends Controller {
 	public function __construct() {
+		//登录之后才可以查看和编辑文章
 		$this->middleware('auth', ['except' => ['index', 'show']]);
 	}
 
@@ -38,26 +39,27 @@ class TopicsController extends Controller {
 		$topic->user_id = Auth::id();
 		$topic->excerpt = str_limit($topic->body, 200);
 		$topic->save();
-		return redirect()->route('topics.show', $topic->id)->with('message', '新建成功！.');
+		return redirect()->route('topics.show', $topic->id)->with('success', '新建成功！.');
 	}
 
 	public function edit(Topic $topic) {
 		$this->authorize('update', $topic);
-		return view('topics.create_and_edit', compact('topic'));
+		$categories=Category::all();
+		return view('topics.create_and_edit')->withCategories($categories)->withTopic($topic);
 	}
 
 	public function update(TopicRequest $request, Topic $topic) {
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Updated successfully.');
+		return redirect()->route('topics.show', $topic->id)->with('success', '更新成功！.');
 	}
 
 	public function destroy(Topic $topic) {
 		$this->authorize('destroy', $topic);
 		$topic->delete();
 
-		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
+		return redirect()->route('topics.index')->with('success', '删除成功！.');
 	}
 	public function upload_image(Request $request, ImageUploadHandler $uploader) {
 		// 初始化返回数据，默认是失败的

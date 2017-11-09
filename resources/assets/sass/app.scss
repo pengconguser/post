@@ -6,7 +6,7 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
-
+@import "topic_body";
 /* universal */
 
 body {
@@ -139,6 +139,22 @@ body {
             margin-bottom: 12px;
             border: 0;
             border-top: 1px solid #dcebf5;
+        }
+    }
+}
+/* Topic Show Page */
+
+@import "topic_body";
+
+.topics-show-page {
+
+    .panel {
+        padding: 15px;
+
+        h1 {
+            margin: 0.4em auto 0.6em;
+            font-size: 28px;
+            line-height: 38px;
         }
     }
 }
