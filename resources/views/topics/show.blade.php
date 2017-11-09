@@ -28,7 +28,7 @@
 	{{ $topic->title }}
 </p> <label>Body</label>
 <p>
-	{{ $topic->body }}
+	{!! $topic->body !!}
 </p> <label>User_id</label>
 <p>
 	{{ $topic->user_id }}
@@ -48,9 +48,6 @@
 <p>
 	{{ $topic->order }}
 </p> <label>Excerpt</label>
-<p>
-	{{ $topic->excerpt }}
-</p> <label>Slug</label>
 <p>
 	{{ $topic->slug }}
 </p>
